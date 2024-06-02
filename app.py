@@ -5,8 +5,6 @@ import streamlit as st
 from openai import OpenAI
 from PIL import Image
 
-st.title("ChatGPT-like clone")
-
 # Set OpenAI API key from Streamlit secrets
 client = OpenAI(api_key=st.secrets['OPENAI_API_KEY'])
 
@@ -41,9 +39,6 @@ def load_pdf(pdf_file_buffer):
             img.save(output, format="JPEG")
             image_bytes = output.getvalue()
         st.session_state.encoded_imgs.append(base64.b64encode(image_bytes).decode('utf-8'))
-
-with st.chat_message("assistant"):
-    st.write('你怎么又来问问题啊')
 
 # Initialize chat history
 if "messages" not in st.session_state:
