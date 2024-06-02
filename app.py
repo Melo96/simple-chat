@@ -55,7 +55,7 @@ for message in st.session_state.messages:
         elif message['role']=='user':
             for item in message["content"]:
                 if item['type']=='text':
-                    st.write(message['text'])
+                    st.write(item['text'])
 
 with st.sidebar:
     st.title("ChatGPT-like clone")
