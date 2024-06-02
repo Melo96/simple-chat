@@ -3,7 +3,6 @@ import base64
 import streamlit as st
 from openai import OpenAI
 from PIL import Image
-from st_multimodal_chatinput import multimodal_chatinput
 
 st.title("ChatGPT-like clone")
 
