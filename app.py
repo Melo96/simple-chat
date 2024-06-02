@@ -24,7 +24,7 @@ for message in st.session_state.messages:
                 st.write(message["content"])
 
 with st.sidebar:
-    st.container(height=600, border=False)
+    st.container(height=500, border=False)
     img_file_buffer = st.file_uploader('Upload an image', type=['png', 'jpg'])
     encoded_img = None
     if img_file_buffer is not None:
