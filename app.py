@@ -47,6 +47,27 @@ if "messages" not in st.session_state:
     st.session_state.img_clicked = False
     st.session_state.pdf_clicked = False
 
+# Display the user and the assistant's message box in the opposite side
+st.markdown(
+    """
+    <style>
+        div.stChatMessage.st-emotion-cache-1c7y2kd
+            { 
+                display: flex;
+                text-align: right;
+                flex-direction: row-reverse;
+            }
+        div.stChatMessage.st-emotion-cache-janbn0
+            { 
+                display: flex;
+                text-align: right;
+                flex-direction: row-reverse;
+            }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
