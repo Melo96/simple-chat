@@ -33,6 +33,9 @@ def load_pdf(pdf_file_buffer):
 
         # 将像素图转换为 PIL 图像
         img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+        # 如果图片是 RGBA 模式，转换为 RGB 模式
+        if img.mode == 'RGBA':
+            img = img.convert('RGB')
 
         # 将像素图保存为 JPEG 格式的字节流
         with io.BytesIO() as output:
@@ -86,7 +89,7 @@ with st.sidebar:
         if st.session_state.img_clicked:
             img_file_buffer = st.file_uploader('Upload an image', type=['png', 'jpg'])
             if img_file_buffer: load_img(img_file_buffer)
-            
+
     with col2:
         st.button('Upload PDF', on_click=pdf_clicked)
         if st.session_state.pdf_clicked:
@@ -102,8 +105,8 @@ if text := st.chat_input("请在这里输入消息，点击Enter发送"):
         for img in st.session_state.encoded_imgs:
             message['content'].append({"type": "image_url",
                                     "image_url": {
-                                                        "url": f"data:image/jpeg;base64,{img}"
-                                                    }
+                                            "url": f"data:image/jpeg;base64,{img}"
+                                        }
                                     })
     st.session_state.messages.append(message)
     # Display user message in chat message container
