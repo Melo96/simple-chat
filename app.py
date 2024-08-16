@@ -16,6 +16,9 @@ def pdf_clicked():
 
 def load_img(img_file_buffer):
     image = Image.open(img_file_buffer)
+    # 如果图片是 RGBA 模式，转换为 RGB 模式
+    if img.mode == 'RGBA':
+        img = img.convert('RGB')
     # Convert to bytes
     with io.BytesIO() as output:
         image.save(output, format="JPEG")
@@ -33,9 +36,6 @@ def load_pdf(pdf_file_buffer):
 
         # 将像素图转换为 PIL 图像
         img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
-        # 如果图片是 RGBA 模式，转换为 RGB 模式
-        if img.mode == 'RGBA':
-            img = img.convert('RGB')
 
         # 将像素图保存为 JPEG 格式的字节流
         with io.BytesIO() as output:
